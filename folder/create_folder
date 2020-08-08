@@ -1,0 +1,20 @@
+sudo chown www-data:www-data foldername/
+
+<?php
+$date = date('Y-m-d H.i.s');
+if (!is_dir('assets/'.$date)) {
+    mkdir('./assets/' . $date, 0777, TRUE); 
+
+}
+
+?>
+
+
+
+You can use chmod to change the permissions. Something like this may work. After the do_upload you could try adding the following line
+
+if(is_file($config['upload_path']))
+{
+    chmod($config['upload_path'], 777); ## this should change the permissions
+}
+
