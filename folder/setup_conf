@@ -1,0 +1,73 @@
+PHp 7.0 setup
+
+Castom Php Verson
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get install php7.0
+sudo apt-get install php7.0-mysql
+
+=======================================
+sudo apt-get install libapache2-mod-php7.0
+ sudo apt-get install php7.0-mbstring
+sudo service apache2 restart
+
+
+===================remove index.php==================
+
+
+Step 1 :
+
+Add this in htaccess file
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+   # RewriteBase /
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.php [L]
+</IfModule>
+
+Step 2 :
+
+Remove index.php in codeigniter config
+
+$config['base_url'] = ''; 
+$config['index_page'] = '';
+
+Step 3 :
+
+Allow overriding htaccess in Apache Configuration (Command)
+
+sudo nano /etc/apache2/apache2.conf
+
+and edit the file & change to
+
+AllowOverride All
+
+for www folder
+
+Step 4 :
+
+Enabled apache mod rewrite (Command)
+
+sudo a2enmod rewrite
+
+Step 5 :
+
+Restart Apache (Command)
+
+sudo /etc/init.d/apache2 restart
+
+
+==============mcrypt install=====================
+sudo apt-get install php5-mcrypt   
+sudo php5enmod mcrypt
+
+----------for php 7.0---------------------
+sudo  a2enmod proxy_fcgi setenvif
+sudo a2enconf php7.0-fpm
+systemctl reload apache2
+
+
+--------------------------------------------------
+sudo apt-get install php7.1-gd
